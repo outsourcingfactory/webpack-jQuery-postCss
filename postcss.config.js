@@ -8,8 +8,8 @@ module.exports = {
     },
     'postcss-cssnext': {},
     'postcss-px-to-viewport': {
-      viewportWidth: 750,
-      viewportHeight: 1334,
+      viewportWidth: 740,
+      viewportHeight: 1136,
       unitPrecision: 3,
       viewportUnit: 'vw',
       selectorBlackList: ['.ignore', '.hairlines'],

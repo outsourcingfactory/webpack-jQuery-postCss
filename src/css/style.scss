@@ -1,0 +1,28 @@
+@mixin img-center{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@mixin pu-man {
+  width: 100%;
+  height: 100%;
+}
+
+.loading-page{
+  position: absolute;
+  z-index: 10;
+  background-image: url('../img/p1-bg.jpg');
+  @include img-center();
+  @include pu-man();
+  .jindu{
+    height: 20px;
+    width: 100%;
+    line-height: 20px;
+    font-size: 20px;
+    position: absolute;
+    top: 740px;
+    color: #c0c0c0;
+    text-align: center;
+  }
+}
