@@ -17,7 +17,7 @@ module.exports = {
       mediaQuery: false
     },
     'postcss-viewport-units': {},
-    'yarn a': {
+    'cssnano': {
       preset: 'advanced',
       autoprefixer: false,
       'postcss-zindex': false
