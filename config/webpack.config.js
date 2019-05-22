@@ -84,13 +84,13 @@ const plugins = [
       console.log(`server is running on http://127.0.0.1:${port}/`.yellow);
     }
   }),
-  new CopyWebpackPlugin([
-    {
-      from: path.resolve(__dirname, '../static'),
-      to: 'static',
-      ignore: ['.*']
-    }
-  ]),
+  // new CopyWebpackPlugin([
+  //   {
+  //     from: path.resolve(__dirname, '../static'),
+  //     to: 'static',
+  //     ignore: ['.*']
+  //   }
+  // ]),
   new webpack.ProvidePlugin({
     $: 'jquery',
     jQuery: 'jquery',
