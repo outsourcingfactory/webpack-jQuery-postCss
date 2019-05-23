@@ -1,4 +1,4 @@
-#TODO:
+# TODO:
 1. 打包时加hash
 2. 将打包后的文件分目录
 3. handelImg.js 做成plugin,在打包结束后分析2中的图片目录生成文件
