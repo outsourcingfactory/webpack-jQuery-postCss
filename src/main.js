@@ -1,9 +1,13 @@
 import './css/index.scss';
 import Swiper from 'swiper';
 import $ from 'jquery';
-const BasePath = './';
+const BasePath = process.env.DEPLOY_ENV === 'prod' ? './static/' : './static/';
+const imgPath = `${BasePath}img/`;
 let mySwiper;
+
 const initSwiper = () => {
+  const runFun = (index, funName) => pageAnimate[`page${index}`] && pageAnimate[`page${index}`][funName] && pageAnimate[`page${index}`][funName]();
+  let oldIndex = 1;
   mySwiper = new Swiper('.swiper-container', {
     direction: 'vertical', // 垂直切换选项
     loop: false, // 循环模式选项
@@ -14,9 +18,13 @@ const initSwiper = () => {
     },
 
     on: {
-      slideChangeTransitionEnd (index) {
-        console.log(mySwiper && mySwiper.activeIndex);
-        pageAnimate[`page${index}`] && pageAnimate[`page${index}`]();
+      slideChangeTransitionEnd () {
+        const index = Number(mySwiper.activeIndex);
+        console.log(index, oldIndex);
+
+        runFun(oldIndex, 'destroyed');
+        oldIndex = index + 1;
+        runFun(oldIndex, 'init');
       }
     }
   });
@@ -41,19 +49,88 @@ const loadAllImage = (onProgress, onCallBack) => {
     Img.onload = () => callback();
   };
   createScript(`${BasePath}imgArr.js`, () => {
-    window._$_imgArr_.forEach(element => {
-      loadImage(`${BasePath}${element}`, onProgress);
+    const imgArr = window._$_imgArr_;
+    let load = 0;
+    imgArr.forEach(element => {
+      loadImage(`${imgPath}${element}`, () => {
+        load++;
+        onProgress((load / imgArr.length) * 100);
+        load === imgArr.length && onCallBack();
+      });
     });
   });
 };
 
 const pageAnimate = {
   init () {
-    $('.loading-page').hide();
-    this.page0();
+    $('.loading-page').animate({
+      opacity: 0
+    }, 100, 'swing', () => {
+      $('.loading-page').hide();
+      pageAnimate.page1.init();
+    });
   },
-  page0 () {
-
+  pageInit () {
+    $('.swiper-button-next').show();
+  },
+  pageDestroyed () {
+    $('.swiper-button-next').hide();
+  },
+  page1: {
+    init () {
+      pageAnimate.pageInit();
+      $('.swiper-button-next').addClass('center');
+      $('.p1-text').animate({
+        opacity: 1
+      }, 800);
+    },
+    destroyed () {
+      pageAnimate.pageDestroyed();
+      $('.swiper-button-next').removeClass('center');
+      $('.p1-text').css({
+        opacity: 0
+      });
+    }
+  },
+  page2: {
+    init () {
+      pageAnimate.pageInit();
+      $('.page2-show').delay(1000).animate({
+        opacity: 1
+      }, 800);
+    },
+    destroyed () {
+      pageAnimate.pageDestroyed();
+      $('.page2-show').css({
+        opacity: 0
+      });
+    }
+  },
+  page4: {
+    init () {
+      pageAnimate.pageInit();
+      $('.page4 .btn').on('click', () => {
+        $('.page4 .btn').removeClass('dot');
+        $('.page4-bg2').animate({
+          opacity: 1
+        }, 800, () => {
+          $('.page4 .show').animate({
+            opacity: 1
+          }, 800);
+        });
+      });
+    },
+    destroyed () {
+      pageAnimate.pageDestroyed();
+      $('.page4 .btn').off('click');
+      $('.page4 .btn').addClass('dot');
+      $('.page4-bg2').css({
+        opacity: 0
+      });
+      $('.page4 .show').css({
+        opacity: 0
+      });
+    }
   }
 };
 

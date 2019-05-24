@@ -4,17 +4,19 @@
   "description": "",
   "main": "./src/main.js",
   "scripts": {
-    "dev": "cross-env DEPLOY_ENV=local webpack-dev-server --hot --config config/webpack.config.js",
+    "dev": "yarn handelImg && cross-env DEPLOY_ENV=local webpack-dev-server --hot --config config/webpack.config.js",
     "_build": "rimraf dist/* && webpack --config config/webpack.config.js && yarn handelImg",
     "build:dev": "cross-env DEPLOY_ENV=dev yarn _build",
     "build:qa": "cross-env DEPLOY_ENV=qa yarn _build",
     "build:prod": "cross-env DEPLOY_ENV=prod yarn _build",
-    "lint": "eslint --fix src/**/*.{js,vue}",
-    "handelImg":"node config/handelImg.js"
+    "lint": "eslint --fix src/**/*.{js}",
+    "handelImg": "node config/handelImg.js"
   },
   "keywords": [
-    "vue",
-    "fh-sys-ui"
+    "jquery",
+    "webpack",
+    "postcss",
+    "imagePreLoad"
   ],
   "license": "MIT",
   "dependencies": {

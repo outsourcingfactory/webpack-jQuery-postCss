@@ -10,7 +10,7 @@ const WebpackBar = require('webpackbar');
 const env = process.env.DEPLOY_ENV;
 const port = '8080';
 // const isProd = env === 'prod';
-const isProd = false;
+const isProd = env === 'prod';
 const mode = isProd ? 'production' : 'development';
 const target = 'web';
 const devtool = 'eval-source-map';
@@ -60,15 +60,17 @@ const modules = {
     test: /.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
     loader: 'file-loader',
     options: {
-      name: '[name].[ext]?[hash]'
+      name: '[name].[hash].[ext]',
+      outputPath: isProd ? './static/img/' : undefined,
+      publicPath: isProd ? '../static/img/' : undefined
     }
   }]
 };
 
 const plugins = [
   new MiniCssExtractPlugin({
-    filename: !isProd ? '[name].css' : '[name].[hash].css',
-    chunkFilename: !isProd ? '[id].css' : '[id].[hash].css'
+    filename: !isProd ? '[name].css' : 'css/[name].[hash].css',
+    chunkFilename: !isProd ? '[id].css' : 'css/[id].[hash].css'
   }),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, '../index.html')
@@ -83,7 +85,7 @@ const plugins = [
       console.log('\n');
       console.log(`server is running on http://127.0.0.1:${port}/`.yellow);
     }
-  }),
+  })
   // new CopyWebpackPlugin([
   //   {
   //     from: path.resolve(__dirname, '../static'),
@@ -91,12 +93,12 @@ const plugins = [
   //     ignore: ['.*']
   //   }
   // ]),
-  new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    'window.jQuery': 'jquery',
-    'window.$': 'jquery'
-  })
+  // new webpack.ProvidePlugin({
+  //   $: 'jquery',
+  //   jQuery: 'jquery',
+  //   'window.jQuery': 'jquery',
+  //   'window.$': 'jquery'
+  // })
 ];
 
 const optimization = {
@@ -122,9 +124,16 @@ const optimization = {
   ]
 };
 
+const output = {
+  path: path.join(__dirname, '../', 'dist'),
+  filename: !isProd ? '[name].js' : 'js/[name].[hash:8].js',
+  publicPath: './'
+};
+
 const config = {
   mode,
   entry,
+  output: isProd ? output : undefined,
   module: modules,
   target,
   resolve,

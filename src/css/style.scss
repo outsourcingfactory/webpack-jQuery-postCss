@@ -1,21 +1,35 @@
-@mixin img-center{
+@mixin cover {
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+}
+@mixin contain {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 @mixin pu-man {
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
-.loading-page{
+@mixin box {
+  @include cover();
+  @include pu-man();
+}
+
+[class*="page"] {
+  @include box();
+}
+
+.loading-page {
   position: absolute;
   z-index: 10;
-  background-image: url('../img/p1-bg.jpg');
-  @include img-center();
-  @include pu-man();
-  .jindu{
+  background-color: #000;
+  background-image: url("../../static/img/load-bg.jpg");
+  .jindu {
     height: 20px;
     width: 100%;
     line-height: 20px;
@@ -24,5 +38,90 @@
     top: 740px;
     color: #c0c0c0;
     text-align: center;
+  }
+}
+.swiper-button-next {
+  display: none;
+  position: absolute;
+  bottom: 93px;
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  outline: unset;
+  background-image: url("../../static/img/right-next.gif");
+  left: 600px;
+  &.center {
+    background-image: url("../../static/img/center-next.png");
+    left: 314px;
+  }
+}
+
+.page1 {
+  background-image: url("../../static/img/p1-bg.jpg");
+
+  .p1-text {
+    @include contain();
+    background-image: url("../../static/img/p1-text.gif");
+    opacity: 0;
+    position: absolute;
+    bottom: 200px;
+    height: 138px;
+    width: 100%;
+  }
+}
+
+.page2 {
+  background-image: url("../../static/img/p2-bg.png");
+  .page2-show {
+    position: absolute;
+    z-index: 2;
+    background-image: url("../../static/img/p2-bg2.png");
+    opacity: 0;
+  }
+}
+
+.page4 {
+  background-image: url("../../static/img/p4-bg.png");
+  .btn {
+    position: absolute;
+    z-index: 4;
+    width: 100px;
+    height: 100px;
+    left: 162px;
+    top: calc(50%-60px);
+    @include contain();
+    background-image: url("../../static/img/p4-btn.png");
+    &.dot {
+      animation: dot 1.5s alternate infinite;
+    }
+  }
+  .show {
+    position: absolute;
+    width: 212px;
+    height: 256px;
+    top: 50%;
+    transform: translateY(-100px);
+    right: 130px;
+    @include contain();
+    opacity: 0;
+    background-image: url("../../static/img/p4-show.png");
+  }
+  .page4-bg2 {
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    background-image: url("../../static/img/p4-bg2.png");
+  }
+}
+
+@keyframes dot {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.6;
   }
 }
