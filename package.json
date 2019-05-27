@@ -5,10 +5,11 @@
   "main": "./src/main.js",
   "scripts": {
     "dev": "yarn handelImg && cross-env DEPLOY_ENV=local webpack-dev-server --hot --config config/webpack.config.js",
-    "_build": "rimraf dist/* && webpack --config config/webpack.config.js && yarn handelImg",
+    "_build": "webpack --config config/webpack.config.js && yarn handelImg",
     "build:dev": "cross-env DEPLOY_ENV=dev yarn _build",
     "build:qa": "cross-env DEPLOY_ENV=qa yarn _build",
     "build:prod": "cross-env DEPLOY_ENV=prod yarn _build",
+    "build": "cross-env DEPLOY_ENV=prod && node config/bean.js",
     "lint": "eslint --fix src/**/*.{js}",
     "handelImg": "node config/handelImg.js"
   },
@@ -47,6 +48,8 @@
     "eslint-plugin-standard": "^3.0.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "inquirer": "^6.3.1",
+    "inquirer-autocomplete-prompt": "^1.0.1",
     "mini-css-extract-plugin": "^0.4.1",
     "node-sass": "^4.9.2",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
