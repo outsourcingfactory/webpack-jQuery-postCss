@@ -8,7 +8,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WebpackBar = require('webpackbar');
 
 const env = process.env.DEPLOY_ENV;
-const port = '8080';
+const port = '8088';
 // const isProd = env === 'prod';
 const isProd = env === 'prod';
 const mode = isProd ? 'production' : 'development';
@@ -45,8 +45,8 @@ const modules = {
     test: /\.css$/,
     use: [
       MiniCssExtractPlugin.loader,
-      'css-loader',
-      'postcss-loader'
+      'css-loader'
+      // 'postcss-loader'
     ]
   }, {
     test: /\.scss$/,
@@ -157,6 +157,7 @@ if (!isProd) {
     proxy,
     compress: true,
     noInfo: true
+    // host: '10.200.15.84'
   };
 }
 
