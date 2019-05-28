@@ -407,3 +407,20 @@
     }
   }
 }
+
+
+
+.app-msg{
+  width: auto;
+  height: auto;
+  padding: 40px ;
+  z-index: 100;
+  color: #fff;
+  line-height: 32px;
+  background: rgba($color: #000000, $alpha: 0.6);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  display: none;
+  transform: translate(-50%);
+}

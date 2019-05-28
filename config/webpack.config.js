@@ -4,7 +4,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WebpackBar = require('webpackbar');
 
 const env = process.env.DEPLOY_ENV;
@@ -60,7 +60,7 @@ const modules = {
     test: /.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
     loader: 'file-loader',
     options: {
-      name: '[name].[hash].[ext]',
+      name: '[name].[ext]',
       outputPath: isProd ? './static/img/' : undefined,
       publicPath: isProd ? '../static/img/' : undefined
     }
@@ -85,14 +85,19 @@ const plugins = [
       console.log('\n');
       console.log(`server is running on http://127.0.0.1:${port}/`.yellow);
     }
-  })
-  // new CopyWebpackPlugin([
-  //   {
-  //     from: path.resolve(__dirname, '../static'),
-  //     to: 'static',
-  //     ignore: ['.*']
-  //   }
-  // ]),
+  }),
+  new CopyWebpackPlugin([
+    {
+      from: path.resolve(__dirname, '../static/img'),
+      to: 'static/img',
+      ignore: ['.*']
+    },
+    {
+      from: path.resolve(__dirname, '../static/audio'),
+      to: 'static/audio',
+      ignore: ['.*']
+    }
+  ])
   // new webpack.ProvidePlugin({
   //   $: 'jquery',
   //   jQuery: 'jquery',
@@ -156,8 +161,8 @@ if (!isProd) {
     port,
     proxy,
     compress: true,
-    noInfo: true
-    // host: '10.200.15.84'
+    noInfo: true,
+    host: '192.168.31.56'
   };
 }
 

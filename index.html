@@ -129,7 +129,6 @@
         </div>
         <!-- 预约试驾 -->
         <div class="swiper-slide page17">
-          <div class="msg"></div>
           <div class="goback"></div>
           <div class="box">
             <div class="title">
@@ -137,12 +136,14 @@
             </div>
             <input id="name" class="input" placeholder="姓名" type="text">
             <input id="phone" class="input" placeholder="手机" type="text">
-            <p class="select input">车型</p>
-            <input type="text" class="select input select-city" value=""
+            <input id="car" value="ex3" class="input" placeholder="车型" type="text">
+            <input type="text" id="city" class="select input select-city" value=""
               placeholder="所在城市" readonly
             >
-            <p class="select input">预约经销商</p>
-            <div class="btn">
+            <input type="text" id="shop" class="select input select-shop" value=""
+              placeholder="预约经销商" readonly
+            >
+            <div class="btn submit">
               提交预约
             </div>
           </div>
@@ -150,7 +151,12 @@
       </div>
       <div class="swiper-button-next"></div>
     </div>
+    <div class="app-msg"></div>
   </div>
+  <audio id="audio" autoplay="autoplay" loop="loop" preload="auto" src="./static/audio/bg.mp3">
+    你的浏览器不支持audio标签
+  </audio>
+  <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 </body>
 
 </html>

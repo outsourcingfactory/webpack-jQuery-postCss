@@ -1,22 +1,46 @@
 import './css/index.scss';
 import './css/bootstrap.css';
 import './css/mpicker.css';
-
+import {dateFormat} from './util/index.js';
 import initSwiper from './js/swiper';
 import $ from 'jquery';
 import loadAllImage from './js/loadImage';
 import './js/mPicker.min';
-import {cityData} from './js/data';
+import {cityData} from './js/cityData';
+import shopData from './js/shopData';
+import './js/initShare';
+const imgPath = process.env.NODE_ENV === 'prod' ? location.href.split('index.html')[0] + 'static/img/' : `../../static/img/`;
+
 let mySwiper = null;
 const runFun = (index, funName) => pageAnimate[`page${index}`] && pageAnimate[`page${index}`][funName]
   ? pageAnimate[`page${index}`][funName]()
   : pageAnimate[funName === 'init' ? 'pageInit' : 'pageDestroyed']();
 
+const showMsg = (msg) => $('.app-msg').html(msg).show() && setTimeout(() => {
+  $('.app-msg').hide();
+}, 1500);
+
+const audioAutoPlay = (id) => {
+  var audio = document.getElementById(id);
+  audio.play();
+  document.addEventListener('WeixinJSBridgeReady', function () {
+    audio.play();
+  }, false);
+  document.addEventListener('YixinJSBridgeReady', function () {
+    audio.play();
+  }, false);
+};
+
+const PageInit = () => {
+  pageAnimate.init();
+  audioAutoPlay('audio');
+};
+
 $(() => {
   mySwiper = initSwiper(runFun);
   loadAllImage((val) => {
     $('.loading-page .jindu').html(`${val.toFixed(2)}%`);
-  }, pageAnimate.init);
+  }, PageInit);
 });
 
 const navTarget = [null, null, 1, 1, 1, 1, 1,
@@ -41,7 +65,7 @@ const AnimationLib = {
           $(`.page${index}`).append($cover);
         }
         $cover.css({
-          'background-image': `url("../../static/img/p${index}-cover.png")`,
+          'background-image': `url("${imgPath}/p${index}-cover.png")`,
           opacity: 0
         }).delay(1000).animate({
           opacity: 1
@@ -64,7 +88,7 @@ const pageAnimate = {
   init () {
     for (let a = 1, len = $('.swiper-slide').length; a <= len; a++) {
       $(`.page${a}`).css({
-        'background-image': `url("../../static/img/p${a}-bg.png")`
+        'background-image': `url("${imgPath}/p${a}-bg.png")`
       });
     }
     $('.loading-page').animate({
@@ -82,7 +106,7 @@ const pageAnimate = {
       $text = $('<div class = "pa-text"></div>');
       $(`.page${index}`).append($text);
       $text.css({
-        'background-image': `url("../../static/img/pg${index}-text.png")`,
+        'background-image': `url("${imgPath}/pg${index}-text.png")`,
         opacity: 0
       }).animate({opacity: 1}, 500);
     }
@@ -94,7 +118,7 @@ const pageAnimate = {
         $nav = $('<div class = "nav"></div>');
         $(`.page${index}`).append($nav);
         $nav.css({
-          'background-image': `url("../../static/img/nav${navIndex}.png")`,
+          'background-image': `url("${imgPath}/nav${navIndex}.png")`,
           opacity: 0
         }).animate({opacity: 1}, 500);
       }
@@ -244,6 +268,61 @@ const pageAnimate = {
       $('.goback').on('click', () => {
         mySwiper.slideTo(0, 1000, false);
       });
+      $('.page17 .submit').on('click', () => {
+        const name = $('#name').val();
+        const phone = $('#phone').val();
+        const car = $('.car').val() || '路虎';
+        const city = $('#city').val() || document.getElementById('city').value;
+        const date = dateFormat(new Date(), 'yyyy-MM-dd');
+        const shop = $('#shop').val() || document.getElementById('shop').value;
+        if (!name) {
+          showMsg('请输入姓名');
+        } else if (!phone) {
+          showMsg('请输入手机');
+        } else if (!car) {
+          showMsg('请选择车型');
+        } else if (!city) {
+          showMsg('请选择所在城市');
+        } else if (!shop) {
+          showMsg('请选择所预约经销商');
+        } else {
+          $.ajax({
+            url: './saveInfo.php',
+            type: 'POST',
+            data: {
+              name, phone, car, city, date, shop
+            },
+            error (xhr, status, error) {
+              showMsg('提交错误');
+            },
+            success (reg) {
+              if (reg.errorcode.toString() === '0') {
+                showMsg('提交成功');
+                setTimeout(() => {
+                  mySwiper.slideTo(0, 1000, false);
+                }, 2000);
+              } else {
+                showMsg(reg.msg);
+              }
+            }
+          });
+        }
+      });
+      const initShop = (data) => {
+        $('.page17 .select-shop').mPicker({
+          level: 1,
+          dataJson: data,
+          Linkage: false,
+          rows: 6,
+          idDefault: false,
+          header: '<div class="mPicker-header">选择经销商</div>',
+          confirm: function (json) {
+          },
+          cancel: function (json) {
+          }
+        });
+      };
+
       $('.page17 .select-city').mPicker({
         level: 2,
         dataJson: cityData,
@@ -253,7 +332,12 @@ const pageAnimate = {
         splitStr: '-',
         header: '<div class="mPicker-header">选择城市</div>',
         confirm: function (json) {
-          console.info('当前选中json：', json);
+          const adds = [...json.name.split('-')];
+          const p = adds[0].replace(/自治区|省|市|壮族自治区|回族自治区|/g, '');
+          const c = adds[1];
+          const shopArr = shopData.filter(ele => ele.province.includes(p) && (c.includes(ele.city) || ele.city.includes(c))).map(ele => ({name: ele.shop, value: ele.shop}));
+          document.getElementById('shop').value = '';
+          initShop(shopArr);
         },
         cancel: function (json) {
         }
