@@ -53,60 +53,76 @@
       <div class="swiper-wrapper">
         <!-- 首页 -->
         <div class="swiper-slide page1 next-center">
-          <div class="p1-text"></div>
+          <div class="p1-text goto"></div>
         </div>
         <!-- 职能电控 -->
         <div class="swiper-slide page2">
-          <!-- <div class="page-cover"></div> -->
+          <div class="run-anima click-btn"></div>
         </div>
         <!-- 职能飞屏 -->
-        <div class="swiper-slide page3"></div>
+        <div class="swiper-slide page3">
+          <div class="run-anima left-hover"></div>
+        </div>
         <!-- 智能语音 -->
         <div class="swiper-slide page4">
-          <div class="btn dot">
+          <div class="btn click-btn dot">
             <div class="sub-btn"></div>
           </div>
+          <div style="display: none" class="run-anima"></div>
           <div class="show"></div>
           <div class="page4-bg2"></div>
         </div>
         <!-- 职能驾驶 -->
-        <div class="swiper-slide page5"></div>
+        <div class="swiper-slide page5">
+            <div class="run-anima click-btn"></div>
+        </div>
         <!-- 职能网联 -->
         <div class="swiper-slide page6">
+            <div class="run-anima click-btn"></div>
           <div class="gif">
           </div>
         </div>
         <!-- 仿生电池 -->
-        <div class="swiper-slide page7"></div>
+        <div class="swiper-slide page7">
+            <div class="run-anima click-btn"></div>
+        </div>
         <!-- 千里续航 -->
         <div class="swiper-slide page8">
           <div class="box">
               <div class="dianchi"></div>
               <div class="number">0km</div>
           </div>
+          <div class="run-anima click-btn"></div>
         </div>
         <!-- 迅猛加速 -->
         <div class="swiper-slide page9">
+            <div class="run-anima click-btn"></div>
           <div class="box">
           </div>
         </div>
         <!-- 灵巧驾控 -->
         <div class="swiper-slide page10">
+            <div class="run-anima click-btn"></div>
           <div class="box">
               <div class="line"></div>
               <div class="number"></div>
           </div>
         </div>
         <!-- 多维安全 -->
-        <div class="swiper-slide page11"></div>
+        <div class="swiper-slide page11">
+            <div class="run-anima click-btn"></div>
+        </div>
         <!-- 灵犀遥控 -->
         <div class="swiper-slide page12">
+            <div class="run-anima click-btn"></div>
           <div class="page-car"></div>
           <div class="phone"></div>
+          <div class="hand"></div>
         </div>
         <!-- 自如空间 -->
         <div class="swiper-slide page13">
-          <div class="gif"></div>
+          <!-- <div class="gif"></div> -->
+          <div class="run-anima click-btn"></div>
         </div>
         <!-- 七彩车身 -->
         <div class="swiper-slide page14">
@@ -120,32 +136,40 @@
             <div class="li"></div>
           </div>
             <div class="page-car"></div>
+            <div class="run-anima click-btn"></div>
         </div>
         <!-- 钻石灯阵 -->
-        <div class="swiper-slide page15"></div>
+        <div class="swiper-slide page15">
+            <div class="run-anima click-btn"></div>
+        </div>
         <!-- 双向充放 -->
         <div class="swiper-slide page16">
-          <div class="page16-line"></div>
+          <!-- <div class="page16-line"></div> -->
+          <div class="run-anima click-btn"></div>
         </div>
         <!-- 预约试驾 -->
         <div class="swiper-slide page17">
           <div class="goback"></div>
+          
           <div class="box">
-            <div class="title">
-              预约试驾
-            </div>
-            <input id="name" class="input" placeholder="姓名" type="text">
-            <input id="phone" class="input" placeholder="手机" type="text">
-            <input id="car" value="ex3" class="input" placeholder="车型" type="text">
-            <input type="text" id="city" class="select input select-city" value=""
-              placeholder="所在城市" readonly
-            >
-            <input type="text" id="shop" class="select input select-shop" value=""
-              placeholder="预约经销商" readonly
-            >
-            <div class="btn submit">
-              提交预约
-            </div>
+              <div class="ok"></div>
+           <div class="form">
+              <div class="title">
+                  预约试驾
+                </div>
+                <input id="name" class="input" placeholder="姓名" type="text">
+                <input id="phone" class="input" placeholder="手机" type="text">
+                <input id="car" value="ex3" class="input" placeholder="车型" type="text">
+                <input type="text" id="city" class="select input select-city" value=""
+                  placeholder="所在城市" readonly
+                >
+                <input type="text" id="shop" class="select input select-shop" value=""
+                  placeholder="预约经销商" readonly
+                >
+                <div class="btn submit">
+                  提交预约
+                </div>
+           </div>
           </div>
         </div>
       </div>
@@ -153,10 +177,14 @@
     </div>
     <div class="app-msg"></div>
   </div>
-  <audio id="audio" autoplay="autoplay" loop="loop" preload="auto" src="./static/audio/bg.mp3">
-    你的浏览器不支持audio标签
-  </audio>
-  <script src="//res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+  <div class="music music-open">
+
+      <audio id="audio" autoplay="autoplay" loop="loop" preload="auto" src="./static/audio/bg.mp3">
+        你的浏览器不支持audio标签
+      </audio>
+  </div>
+
+  <script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 </body>
 
 </html>

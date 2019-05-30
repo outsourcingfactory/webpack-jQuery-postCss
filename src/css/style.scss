@@ -32,6 +32,32 @@
   top: 90px;
   @include contain();
 }
+.music{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  @include contain();
+  z-index: 30;
+  background-image: url('../../static/img/music.png');
+  &.music-open{
+    animation: player 3s infinite linear;
+  }
+  #audio{
+    display: none;
+    opacity: 0;
+  }
+}
+@keyframes player {
+  0% {
+      -webkit-transform: rotate(0deg)
+  }
+
+  to {
+      -webkit-transform: rotate(1turn)
+  }
+}
 
 .page-cover {
   position: absolute;
@@ -65,7 +91,29 @@
   position: absolute;
   z-index: 3;
   bottom: 90px;
+  transform: translateX(100vw);
+  transition: all 1s;
   @include contain();
+}
+.fei{
+  transform: translateX(0px)
+  // animation:fei 1s 1;
+  // animation-name:fei;
+  // animation-duration:1s;
+  // animation-iteration-count:1;
+}
+
+
+.run-anima{
+  position: absolute;
+  left: 50vw;
+  top: 50vh;
+  width: 60px;
+  height: 60px;
+  display: none;
+  @include contain();
+  z-index: 8;
+  background-image: url("../../static/img/click.gif");
 }
 
 .loading-page {
@@ -84,20 +132,39 @@
     text-align: center;
   }
 }
-
+// [w-551-112]{
+//   aspect-ratio: '551:112';
+// }
 .page1 {
   .p1-text {
     @include contain();
-    background-image: url("../../static/img/p1-text.gif");
+    background-image: url("../../static/img/p1-nav.png");
     opacity: 0;
     position: absolute;
     bottom: 200px;
     height: 138px;
     width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
-
+.page2{
+  .run-anima{
+    top: 60vh;
+  }
+}
 .page3{
+  .run-anima{
+    position: absolute;
+    left: 50vw;
+    top: 60vh;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+    display: block !important;
+    @include contain();
+    background-image: url("../../static/img/left.gif");
+  }
   .pa-text {
     bottom:unset;
     top: 224px;
@@ -105,6 +172,10 @@
 }
 
 .page4 {
+  .run-anima{
+    left: 162px;
+    display: none !important;
+  }
   .btn {
     position: absolute;
     z-index: 4;
@@ -149,22 +220,29 @@
   }
 }
 .page6 {
+  .run-anima{
+
+  }
   .pa-text {
     left: unset;
     right: 50px;
   }
   .gif{
     position: absolute;
-    top: 350px;
+    top: 37vh;
+    opacity: 0;
     right: 200px;
     width: 156px;
     height: 132px;
     @include contain();
-    background-image: url("../../static/img/p6-gif.gif");
-
+    background-image: url("../../static/img/p6-gif.png");
   }
 }
 .page8{
+  .run-anima{
+    top: 75vh;
+    left: 80vw;
+  }
   .box{
     position: absolute;
     bottom: 390px;
@@ -197,6 +275,10 @@
   }
 }
 .page9{
+  .run-anima{
+    left: 20vw;
+    top: 25vh;
+  }
   .box{
     position: absolute;
     top: 340px;
@@ -216,7 +298,7 @@
     width: 640px;
     height: 120px;
     position: relative;
-    top: 636px;
+    top: 50vh;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -238,11 +320,23 @@
     }
   }
 }
+.page11{
+  .run-anima{
+    top:40vh;
+  }
+}
 .page12{
+  .run-anima{
+    left: 10vw;
+    top: 20vh;
+  }
   .page-car{
     z-index: 3;
     right: -100%;
     background-image: url("../../static/img/p12-car.png");
+  }
+  .hand{
+
   }
   .phone{
     position: absolute;
@@ -270,6 +364,11 @@
     transform: rotate(60deg);
     @include contain();
     background-image: url("../../static/img/p13-gif.gif");
+  }
+}
+.page13{
+  .run-anima{
+    top: 75vh;
   }
 }
 
@@ -318,16 +417,20 @@
 }
 
 .page16 {
+  .run-anima{
+    top: 70vh;
+    left: 65vw;
+  }
   .pa-text {
     bottom: unset;
     top: 288px;
   }
-  .page16-line{
-    position: absolute;
-    z-index: 3;
-    animation:dot .6s alternate infinite;
-    background-image: url("../../static/img/p16-line1.png");
-  }
+  // .page16-line{
+  //   position: absolute;
+  //   z-index: 3;
+  //   animation:dot .6s alternate infinite;
+  //   // background-image: url("../../static/img/p16-line1.png");
+  // }
 }
 @keyframes re-dot {
   0% {
@@ -352,6 +455,7 @@
 .page17{
   display: flex;
   justify-content: center;
+
   .goback{
     position: absolute;
     width: 180px;
@@ -370,6 +474,20 @@
     margin: 180px auto 0;
     border: 8px solid rgba($color: #3cadff, $alpha: .6);
     background: rgba($color: #111422, $alpha: .8);
+    .form{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .ok{
+      width: 430px;
+      height: 430px;
+      position: absolute;
+      z-index: 2;
+      @include contain();
+    background-image: url("../../static/img/ok.png");
+    }
+
     .title{
       width: 100%;
       color: #fff;
@@ -398,7 +516,7 @@
     .btn{
       height: 55px;
       width: 223px;
-      margin: 60px auto;
+      margin: 40px auto;
       text-align: center;
       background: #3cadff;
       color: #fff;

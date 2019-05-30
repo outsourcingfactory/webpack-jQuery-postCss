@@ -2,40 +2,41 @@
 /* eslint-disable */
 import {isWeiXin} from '../util/index';
 import $ from 'jquery';
-
-var shareUrl = 'http://m.yz-link.com/liuzi/getSignPackage.php';
+import {loadImgPath} from './config'
+var shareUrl = './getSignPackage.php';
 
 
 var locationUrl = window.location.href;
-var urlDir = '';
-var urlSplit = '';
-if (locationUrl.indexOf('?') != -1) {
-  urlSplit = locationUrl.substring(0, locationUrl.indexOf('?'));
-} else {
-  urlSplit = locationUrl;
-}
-if (checkEndName(urlSplit)) {
-  var indexNumber = urlSplit.lastIndexOf('/');
-  urlDir = urlSplit.substring(0, indexNumber);
-} else {
-  urlDir = urlSplit;
-}
-/**
- * 检测url地址后缀名是否存在
- * @param {Object} url
- */
-function checkEndName (url) {
-  if (url.indexOf('.htm') != -1) {
-    return true;
-  }
-  if (url.indexOf('.html') != -1) {
-    return true;
-  }
-  if (url.indexOf('.php') != -1) {
-    return true;
-  }
-  return false;
-}
+// var urlDir = "http://m.yz-link.com/static/img/";
+// var urlSplit = '';
+// if (locationUrl.indexOf('?') != -1) {
+//   urlSplit = locationUrl.substring(0, locationUrl.indexOf('?'));
+// } else {
+//   urlSplit = locationUrl;
+// }
+// if (checkEndName(urlSplit)) {
+//   var indexNumber = urlSplit.lastIndexOf('/');
+//   urlDir = urlSplit.substring(0, indexNumber);
+// } else {
+//   urlDir = urlSplit;
+// }
+// /**
+//  * 检测url地址后缀名是否存在
+//  * @param {Object} url
+//  */
+// function checkEndName (url) {
+//   if (url.indexOf('.htm') != -1) {
+//     return true;
+//   }
+//   if (url.indexOf('.html') != -1) {
+//     return true;
+//   }
+//   if (url.indexOf('.php') != -1) {
+//     return true;
+//   }
+//   return false;
+// }
+
 var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone',
   'showMenuItems', 'hideMenuItems', 'closeWindow'];
 
@@ -47,6 +48,7 @@ var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ',
       data: {
         url: locationUrl
       },
+      contentType:'application/json;charset=UTF-8',
       async: true,
       success: function (re) {
         var json = JSON.parse(re);
@@ -65,14 +67,16 @@ var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ',
  * @param {Object} jsApi
  */
 function wxConfig (appId, nonceStr, timestamp, signature, jsApi) {
-  wx.config({
+  const data = {
     appId: appId,
     nonceStr: nonceStr,
     timestamp: parseInt(timestamp),
     signature: signature,
     jsApiList: jsApi,
     debug: false
-  });
+  }
+  console.log(data)
+  wx.config(data);
 }
 /**
  * 定义分享文案
@@ -87,10 +91,17 @@ export const wx_share = (title, friend_des, group_des, linkUrl, imgShare) => {
     linkUrl = locationUrl;
   }
   if (!imgShare) {
-    imgShare = urlDir + '/imgShare.jpg';
+    imgShare = loadImgPath + '/imgShare.png';
   } else {
     imgShare = urlDir + '/' + imgShare;
   }
+  console.log({
+    title: title,
+    desc: friend_des,
+    link: linkUrl,
+    imgUrl: imgShare,
+    group_des,
+  })
 
   wx.onMenuShareAppMessage({
     title: title,
