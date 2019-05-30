@@ -4,11 +4,11 @@
   "description": "",
   "main": "./src/main.js",
   "scripts": {
-    "dev": "yarn handelImg && cross-env DEPLOY_ENV=local webpack-dev-server --hot --config config/webpack.config.js",
-    "_build": "rimraf dist/* && webpack --config config/webpack.config.js && yarn handelImg",
-    "build:dev": "cross-env DEPLOY_ENV=dev yarn _build",
-    "build:qa": "cross-env DEPLOY_ENV=qa yarn _build",
-    "build:prod": "cross-env DEPLOY_ENV=prod yarn _build",
+    "dev": "npm run handelImg && cross-env DEPLOY_ENV=local webpack-dev-server --hot --config config/webpack.config.js",
+    "_build": "rimraf dist/* && webpack --config config/webpack.config.js && npm run handelImg",
+    "build:dev": "cross-env DEPLOY_ENV=dev npm run _build",
+    "build:qa": "cross-env DEPLOY_ENV=qa npm run _build",
+    "build:prod": "cross-env DEPLOY_ENV=prod npm run _build",
     "lint": "eslint --fix src/**/*.{js}",
     "handelImg": "node config/handelImg.js"
   },

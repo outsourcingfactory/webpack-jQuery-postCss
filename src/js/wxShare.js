@@ -8,34 +8,35 @@ var shareUrl = './getSignPackage.php';
 
 var locationUrl = window.location.href;
 // var urlDir = "http://m.yz-link.com/static/img/";
-// var urlSplit = '';
-// if (locationUrl.indexOf('?') != -1) {
-//   urlSplit = locationUrl.substring(0, locationUrl.indexOf('?'));
-// } else {
-//   urlSplit = locationUrl;
-// }
-// if (checkEndName(urlSplit)) {
-//   var indexNumber = urlSplit.lastIndexOf('/');
-//   urlDir = urlSplit.substring(0, indexNumber);
-// } else {
-//   urlDir = urlSplit;
-// }
-// /**
-//  * 检测url地址后缀名是否存在
-//  * @param {Object} url
-//  */
-// function checkEndName (url) {
-//   if (url.indexOf('.htm') != -1) {
-//     return true;
-//   }
-//   if (url.indexOf('.html') != -1) {
-//     return true;
-//   }
-//   if (url.indexOf('.php') != -1) {
-//     return true;
-//   }
-//   return false;
-// }
+var urlSplit = '';
+var urlDir =  window.location.href;
+if (locationUrl.indexOf('?') != -1) {
+  urlSplit = locationUrl.substring(0, locationUrl.indexOf('?'));
+} else {
+  urlSplit = locationUrl;
+}
+if (checkEndName(urlSplit)) {
+  var indexNumber = urlSplit.lastIndexOf('/');
+  urlDir = urlSplit.substring(0, indexNumber);
+} else {
+  urlDir = urlSplit;
+}
+/**
+ * 检测url地址后缀名是否存在
+ * @param {Object} url
+ */
+function checkEndName (url) {
+  if (url.indexOf('.htm') != -1) {
+    return true;
+  }
+  if (url.indexOf('.html') != -1) {
+    return true;
+  }
+  if (url.indexOf('.php') != -1) {
+    return true;
+  }
+  return false;
+}
 
 var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo', 'onMenuShareQZone',
   'showMenuItems', 'hideMenuItems', 'closeWindow'];
@@ -43,10 +44,10 @@ var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ',
 (function () {
   if (isWeiXin()) {
     $.ajax({
-      type: 'post',
+      type: 'get',
       url: shareUrl,
       data: {
-        url: locationUrl
+        url: encodeURIComponent(urlDir)
       },
       contentType:'application/json;charset=UTF-8',
       async: true,
@@ -73,7 +74,7 @@ function wxConfig (appId, nonceStr, timestamp, signature, jsApi) {
     timestamp: parseInt(timestamp),
     signature: signature,
     jsApiList: jsApi,
-    debug: false
+    debug: true
   }
   console.log(data)
   wx.config(data);
@@ -88,10 +89,10 @@ function wxConfig (appId, nonceStr, timestamp, signature, jsApi) {
  */
 export const wx_share = (title, friend_des, group_des, linkUrl, imgShare) => {
   if (!linkUrl) {
-    linkUrl = locationUrl;
+    linkUrl = urlDir;
   }
   if (!imgShare) {
-    imgShare = loadImgPath + '/imgShare.png';
+    imgShare = loadImgPath + 'imgShare.png';
   } else {
     imgShare = urlDir + '/' + imgShare;
   }
