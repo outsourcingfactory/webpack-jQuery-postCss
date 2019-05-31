@@ -41,7 +41,7 @@ const AnimationLib = {
           $cover.css({
             'background-image': `url("${loadImgPath}/${name}")`,
             opacity: 0
-          }).delay(1000).animate({
+          }).delay(100).animate({
             opacity: 1
           }, 800, AnimationLib.textFei);
         });

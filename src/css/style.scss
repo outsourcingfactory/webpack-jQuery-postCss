@@ -32,7 +32,7 @@
   top: 90px;
   @include contain();
 }
-.music{
+.music {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -40,22 +40,22 @@
   left: 50px;
   @include contain();
   z-index: 30;
-  background-image: url('../../static/img/music.png');
-  &.music-open{
+  background-image: url("../../static/img/music.png");
+  &.music-open {
     animation: player 3s infinite linear;
   }
-  #audio{
+  #audio {
     display: none;
     opacity: 0;
   }
 }
 @keyframes player {
   0% {
-      -webkit-transform: rotate(0deg)
+    -webkit-transform: rotate(0deg);
   }
 
   to {
-      -webkit-transform: rotate(1turn)
+    -webkit-transform: rotate(1turn);
   }
 }
 
@@ -95,16 +95,15 @@
   transition: all 1s;
   @include contain();
 }
-.fei{
-  transform: translateX(0px)
+.fei {
+  transform: translateX(0px);
   // animation:fei 1s 1;
   // animation-name:fei;
   // animation-duration:1s;
   // animation-iteration-count:1;
 }
 
-
-.run-anima{
+.run-anima {
   position: absolute;
   left: 50vw;
   top: 50vh;
@@ -148,13 +147,13 @@
     transform: translateX(-50%);
   }
 }
-.page2{
-  .run-anima{
+.page2 {
+  .run-anima {
     top: 60vh;
   }
 }
-.page3{
-  .run-anima{
+.page3 {
+  .run-anima {
     position: absolute;
     left: 50vw;
     top: 60vh;
@@ -166,13 +165,13 @@
     background-image: url("../../static/img/left.gif");
   }
   .pa-text {
-    bottom:unset;
+    bottom: unset;
     top: 224px;
   }
 }
 
 .page4 {
-  .run-anima{
+  .run-anima {
     left: 162px;
     display: none !important;
   }
@@ -220,16 +219,15 @@
   }
 }
 .page6 {
-  .run-anima{
-
+  .run-anima {
   }
   .pa-text {
     left: unset;
     right: 50px;
   }
-  .gif{
+  .gif {
     position: absolute;
-    top: 37vh;
+    top: 28vh;
     opacity: 0;
     right: 200px;
     width: 156px;
@@ -238,12 +236,12 @@
     background-image: url("../../static/img/p6-gif.png");
   }
 }
-.page8{
-  .run-anima{
+.page8 {
+  .run-anima {
     top: 75vh;
     left: 80vw;
   }
-  .box{
+  .box {
     position: absolute;
     bottom: 390px;
     right: 50px;
@@ -253,14 +251,14 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    .dianchi{
+    .dianchi {
       flex: 1;
       height: 100%;
       @include contain();
       background-position: right;
       background-image: url("../../static/img/p8-dc.gif");
     }
-    .number{
+    .number {
       width: 156px;
       height: 100%;
       text-align: center;
@@ -274,12 +272,12 @@
     }
   }
 }
-.page9{
-  .run-anima{
+.page9 {
+  .run-anima {
     left: 20vw;
     top: 25vh;
   }
-  .box{
+  .box {
     position: absolute;
     top: 340px;
     width: 40vw;
@@ -313,6 +311,7 @@
     }
     .number {
       @include contain();
+      display: none;
       height: 40px;
       width: 100%;
       background-position: top;
@@ -320,25 +319,24 @@
     }
   }
 }
-.page11{
-  .run-anima{
-    top:40vh;
+.page11 {
+  .run-anima {
+    top: 40vh;
   }
 }
-.page12{
-  .run-anima{
+.page12 {
+  .run-anima {
     left: 10vw;
     top: 20vh;
   }
-  .page-car{
+  .page-car {
     z-index: 3;
     right: -100%;
     background-image: url("../../static/img/p12-car.png");
   }
-  .hand{
-
+  .hand {
   }
-  .phone{
+  .phone {
     position: absolute;
     z-index: 4;
     top: 174px;
@@ -355,7 +353,7 @@
     bottom: unset;
     top: 224px;
   }
-  .gif{
+  .gif {
     width: 300px;
     height: 300px;
     position: absolute;
@@ -366,8 +364,8 @@
     background-image: url("../../static/img/p13-gif.gif");
   }
 }
-.page13{
-  .run-anima{
+.page13 {
+  .run-anima {
     top: 75vh;
   }
 }
@@ -377,39 +375,40 @@
     bottom: unset;
     top: 288px;
   }
-  .page-car{
+  .page-car {
     z-index: 5;
     background-image: url("../../static/img/p14-bg.png");
   }
-  .page-ul{
+  .page-ul {
     z-index: 3;
     display: flex;
     position: absolute;
-    .li{
+    .li {
       flex: 1;
-      opacity: 0.6;
-      &.dot{
-        animation:re-dot .6s alternate infinite;
+      opacity: 0.5;
+      transition: all 0.4s;
+      &.dot {
+        opacity: 1;
       }
-      &:nth-child(1){
+      &:nth-child(1) {
         background: #769ebb;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         background: #2573b3;
       }
-      &:nth-child(3){
+      &:nth-child(3) {
         background: #a34725;
       }
-      &:nth-child(4){
+      &:nth-child(4) {
         background: #585549;
       }
-      &:nth-child(5){
+      &:nth-child(5) {
         background: #363841;
       }
-      &:nth-child(6){
+      &:nth-child(6) {
         background: #c8c9cc;
       }
-      &:nth-child(7){
+      &:nth-child(7) {
         background: #6a212a;
       }
     }
@@ -417,7 +416,7 @@
 }
 
 .page16 {
-  .run-anima{
+  .run-anima {
     top: 70vh;
     left: 65vw;
   }
@@ -452,11 +451,11 @@
   }
 }
 
-.page17{
+.page17 {
   display: flex;
   justify-content: center;
 
-  .goback{
+  .goback {
     position: absolute;
     width: 180px;
     height: 52px;
@@ -465,30 +464,35 @@
     @include contain();
     background-image: url("../../static/img/p17-btn.png");
   }
-  .box{
+  .box {
+    position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: 530px;
     height: max-content;
     margin: 180px auto 0;
-    border: 8px solid rgba($color: #3cadff, $alpha: .6);
-    background: rgba($color: #111422, $alpha: .8);
-    .form{
+    border: 8px solid rgba($color: #3cadff, $alpha: 0.6);
+    background: rgba($color: #111422, $alpha: 0.8);
+    .form {
       display: flex;
       justify-content: center;
       flex-direction: column;
     }
-    .ok{
+    .ok {
       width: 430px;
       height: 430px;
       position: absolute;
+      left: 50%;
+      top: 40%;
+      transform: translate(-50%,-50%);
       z-index: 2;
+      opacity: 0;
       @include contain();
-    background-image: url("../../static/img/ok.png");
+      background-image: url("../../static/img/ok.png");
     }
 
-    .title{
+    .title {
       width: 100%;
       color: #fff;
       font-size: 40px;
@@ -497,23 +501,23 @@
       height: 140px;
       text-align: center;
     }
-    .input{
+    .input {
       border: none;
       outline: none;
       background: transparent;
       width: 395px;
       height: 68px;
-      margin:0 auto 39px;
+      margin: 0 auto 39px;
       border-bottom: 1px solid #545454;
       color: #3cadff;
-      &::placeholder{
+      &::placeholder {
         color: #545454;
       }
     }
-    .select{
+    .select {
       color: #3cadff;
     }
-    .btn{
+    .btn {
       height: 55px;
       width: 223px;
       margin: 40px auto;
@@ -526,12 +530,10 @@
   }
 }
 
-
-
-.app-msg{
+.app-msg {
   width: auto;
   height: auto;
-  padding: 40px ;
+  padding: 40px;
   z-index: 100;
   color: #fff;
   line-height: 32px;

@@ -161,8 +161,8 @@ if (!isProd) {
     port,
     proxy,
     compress: true,
-    noInfo: true,
-    host: '10.200.15.84'
+    noInfo: true
+    // host: '10.200.15.84'
   };
 }
 

@@ -109,7 +109,7 @@ export const pageAnimate = {
   page6: {
     init () {
       pageAnimate.pageInit().then(() => {
-        $('.page6 .gif').delay(500).animate({
+        $('.page6 .gif').delay(100).animate({
           opacity: 1
         }, 800, AnimationLib.textFei);
       });
@@ -128,7 +128,7 @@ export const pageAnimate = {
         const speedEnd = 630;
         let i = 0;
         const timer = setInterval(() => {
-          $('.page8 .number').html(`${(i * speedEnd / 40).toFixed(2) * 100 / 100}km`);
+          $('.page8 .number').html(`${parseInt(i * speedEnd / 40) * 100 / 100}km`);
           if (i === 40) {
             clearInterval(timer);
             AnimationLib.textFei();
@@ -146,7 +146,7 @@ export const pageAnimate = {
         const speedEnd = 100;
         let i = 0;
         const timer = setInterval(() => {
-          $('.page9 .box').html(`${(i * timeEnd / 40).toFixed(2) * 100 / 100}s    ${(i * speedEnd / 40).toFixed(2) * 100 / 100}km/h`);
+          $('.page9 .box').html(`${(i * timeEnd / 40).toFixed(2) * 100 / 100}s    ${parseInt(i * speedEnd / 40) * 100 / 100}km/h`);
           if (i === 40) {
             clearInterval(timer);
             AnimationLib.textFei();
@@ -160,7 +160,8 @@ export const pageAnimate = {
   page10: {
     init () {
       pageAnimate.pageInit().then(() => {
-        $('.page10 .line').delay(300).animate({
+        $('.page10 .number').show();
+        $('.page10 .line').delay(100).animate({
           width: '100%'
         }, 500, AnimationLib.textFei);
       });
@@ -175,11 +176,11 @@ export const pageAnimate = {
   page11: new AnimationLib.PageCover(11),
   page12: {
     init () {
-      $('.page12 .phone').delay(300).animate({
+      $('.page12 .phone').delay(100).animate({
         left: 0
       }, 500);
       pageAnimate.pageInit().then(() => {
-        $('.page12 .page-car').delay(1000).animate({
+        $('.page12 .page-car').delay(100).animate({
           right: 0
         }, 1000, AnimationLib.textFei);
       });
@@ -212,6 +213,15 @@ export const pageAnimate = {
   page15: new AnimationLib.PageCover(15),
   page16: new AnimationLib.PageCover(16),
   page17: {
+    destroyed () {
+      pageAnimate.pageDestroyed();
+      $('.page17 .form').css({
+        opacity: 1
+      });
+      $('.page17 .ok').css({
+        opacity: 0
+      });
+    },
     init () {
       // const json = {
       //   name: '张三', // 姓名
@@ -256,7 +266,7 @@ export const pageAnimate = {
               if (reg.errorcode.toString() === '0') {
                 showMsg('提交成功');
                 // swiperGo(0);
-                $('.page17 .form').delay(200).animate({
+                $('.page17 .form').delay(100).animate({
                   opacity: 0
                 }, 500, () => {
                   $('.page17 .ok').animate(
