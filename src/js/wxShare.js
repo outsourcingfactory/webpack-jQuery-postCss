@@ -74,7 +74,7 @@ function wxConfig (appId, nonceStr, timestamp, signature, jsApi) {
     timestamp: parseInt(timestamp),
     signature: signature,
     jsApiList: jsApi,
-    debug: true
+    debug: false
   }
   console.log(data)
   wx.config(data);

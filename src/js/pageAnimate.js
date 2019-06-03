@@ -220,7 +220,7 @@ export const pageAnimate = {
       });
       $('.page17 .ok').css({
         opacity: 0
-      });
+      }).hide();
     },
     init () {
       // const json = {
@@ -269,7 +269,7 @@ export const pageAnimate = {
                 $('.page17 .form').delay(100).animate({
                   opacity: 0
                 }, 500, () => {
-                  $('.page17 .ok').animate(
+                  $('.page17 .ok').show().animate(
                     {
                       opacity: 1
                     }, 500

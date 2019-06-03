@@ -227,13 +227,13 @@
   }
   .gif {
     position: absolute;
-    top: 28vh;
+    top: 34vh;
     opacity: 0;
     right: 200px;
     width: 156px;
     height: 132px;
     @include contain();
-    background-image: url("../../static/img/p6-gif.png");
+    background-image: url("../../static/img/p6-gif.gif");
   }
 }
 .page8 {
@@ -263,7 +263,7 @@
       height: 100%;
       text-align: center;
       line-height: 50px;
-      color: #c2d9cd;
+      color: #1294d9;
       font-size: 32px;
       font-weight: bold;
       // @include contain();
@@ -314,8 +314,11 @@
       display: none;
       height: 40px;
       width: 100%;
+      color: #1294d9;
+      text-align: center;
+      font-size: 40px;
       background-position: top;
-      background-image: url("../../static/img/p10-number.png");
+      // background-image: url("../../static/img/p10-number.png");
     }
   }
 }
@@ -385,10 +388,10 @@
     position: absolute;
     .li {
       flex: 1;
-      opacity: 0.5;
+      opacity: 1;
       transition: all 0.4s;
       &.dot {
-        opacity: 1;
+        opacity: 0.5;
       }
       &:nth-child(1) {
         background: #769ebb;
@@ -487,6 +490,7 @@
       top: 40%;
       transform: translate(-50%,-50%);
       z-index: 2;
+      display: none;
       opacity: 0;
       @include contain();
       background-image: url("../../static/img/ok.png");
