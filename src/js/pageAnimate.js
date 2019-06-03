@@ -160,16 +160,24 @@ export const pageAnimate = {
   page10: {
     init () {
       pageAnimate.pageInit().then(() => {
-        $('.page10 .number').show();
+        ;
         $('.page10 .line').delay(100).animate({
           width: '100%'
-        }, 500, AnimationLib.textFei);
+        }, 500, () => {
+          $('.page10 .number').css({
+            opacity: 1
+          });
+          AnimationLib.textFei();
+        });
       });
     },
     destroyed () {
       pageAnimate.pageDestroyed();
       $('.page10 .line').css({
         width: 0
+      });
+      $('.page10 .number').css({
+        opacity: 0
       });
     }
   },

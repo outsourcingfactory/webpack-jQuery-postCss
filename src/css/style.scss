@@ -311,7 +311,7 @@
     }
     .number {
       @include contain();
-      display: none;
+      opacity: 0;
       height: 40px;
       width: 100%;
       color: #1294d9;
