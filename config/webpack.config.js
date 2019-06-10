@@ -162,7 +162,7 @@ if (!isProd) {
     proxy,
     compress: true,
     noInfo: true
-    // host: '10.200.15.84'
+    // host: '192.168.31.56'
   };
 }
 

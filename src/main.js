@@ -29,7 +29,12 @@ const handerMp3 = () => {
 const PageInit = () => {
   pageAnimate.init();
   handerMp3();
+  initEvent();
 };
+
+const initEvent = () => $(document).on('blur', 'input,textarea,select', () => {
+  document.body.scrollTop = document.documentElement.scrollTop = 0;
+});
 
 $(() => {
   addEvent();
