@@ -47,7 +47,7 @@ var jsConfig = ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ',
       type: 'get',
       url: shareUrl,
       data: {
-        url: encodeURIComponent(urlDir)
+        url: encodeURIComponent(locationUrl)
       },
       contentType:'application/json;charset=UTF-8',
       async: true,
@@ -89,7 +89,7 @@ function wxConfig (appId, nonceStr, timestamp, signature, jsApi) {
  */
 export const wx_share = (title, friend_des, group_des, linkUrl, imgShare) => {
   if (!linkUrl) {
-    linkUrl = urlDir;
+    linkUrl = locationUrl;
   }
   if (!imgShare) {
     imgShare = loadImgPath + 'imgShare.png';

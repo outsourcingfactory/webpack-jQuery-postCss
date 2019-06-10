@@ -85,12 +85,14 @@
 }
 
 .pa-text {
-  width: 427px;
-  height: 320px;
+  width: 750px;
+  height: 500px;
   left: 50px;
   position: absolute;
   z-index: 3;
   bottom: 90px;
+  background-position-x: center;
+  background-position-y: bottom;
   transform: translateX(100vw);
   transition: all 1s;
   @include contain();
@@ -167,6 +169,7 @@
   .pa-text {
     bottom: unset;
     top: 224px;
+    background-position-y: top;
   }
 }
 
@@ -222,8 +225,8 @@
   .run-anima {
   }
   .pa-text {
-    left: unset;
-    right: 50px;
+    // left: unset;
+    // right: 50px;
   }
   .gif {
     position: absolute;
@@ -355,6 +358,7 @@
   .pa-text {
     bottom: unset;
     top: 224px;
+    background-position-y: top;
   }
   .gif {
     width: 300px;
@@ -377,6 +381,7 @@
   .pa-text {
     bottom: unset;
     top: 288px;
+    background-position-y: top;
   }
   .page-car {
     z-index: 5;
@@ -386,12 +391,13 @@
     z-index: 3;
     display: flex;
     position: absolute;
+    background: #000;
     .li {
       flex: 1;
-      opacity: 1;
+      opacity: 0.5;
       transition: all 0.4s;
       &.dot {
-        opacity: 0.5;
+        opacity: 1;
       }
       &:nth-child(1) {
         background: #769ebb;
@@ -426,6 +432,7 @@
   .pa-text {
     bottom: unset;
     top: 288px;
+    background-position-y: top;
   }
   // .page16-line{
   //   position: absolute;

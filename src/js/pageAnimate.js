@@ -270,7 +270,13 @@ export const pageAnimate = {
             error (xhr, status, error) {
               showMsg('提交错误');
             },
-            success (reg) {
+            success (rega) {
+              let reg = rega;
+              try {
+                reg = typeof rega === 'string' ? JSON.parse(rega) : rega;
+              } catch (error) {
+
+              }
               if (reg.errorcode.toString() === '0') {
                 showMsg('提交成功');
                 // swiperGo(0);
